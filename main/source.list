@@ -1,0 +1,29 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    source.list                                        :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: gkamanur <gkamanur@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2025/08/02 14:23:31 by gkamanur          #+#    #+#              #
+#    Updated: 2025/08/02 14:26:02 by gkamanur         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+SRC = \
+builtins/cd.c\
+builtins/pwd.c\
+builtins/echo.c\
+builtins/env.c\
+builtins/unset.c\
+builtins/export.c\
+builtins/exit.c\
+builtins/built_utils.c\
+builtins/environ_var.c\
+helper/check.c\
+helper/file1.c\
+helper/file2.c\
+helper/file3.c\
+main/signal.c\
+main/parsing.c\
+main/main.c
