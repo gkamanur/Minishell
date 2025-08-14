@@ -1,0 +1,25 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    source.list                                        :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: gkamanur <gkamanur@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2025/08/02 14:23:31 by gkamanur          #+#    #+#              #
+#    Updated: 2025/08/12 13:26:29 by gkamanur         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+SRC = \
+$(wildcard $(libft/*.c))\
+malloc_free/free_data.c\
+malloc_free/init.c\
+malloc_free/lst_utils.c\
+helper/check.c\
+helper/file1.c\
+helper/file2.c\
+main/signal.c\
+main/consecutive.c\
+main/tokenization.c\
+main/parse.c\
+main/main.c
