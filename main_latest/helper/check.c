@@ -6,7 +6,7 @@
 /*   By: gkamanur <gkamanur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 13:41:08 by gkamanur          #+#    #+#             */
-/*   Updated: 2025/08/12 13:29:13 by gkamanur         ###   ########.fr       */
+/*   Updated: 2025/08/15 14:47:17 by gkamanur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,30 +71,52 @@ int input_isspace(char *inp)
 	i = 0;
 	while (inp[i] != 0)
 	{
-		if (!(ft_check(inp[i]) == 1))
+		if (!(ft_isspace(inp[i])))
 			return (FALSE);
 		i++;
 	}
 	return(TRUE);
 }
+
+// if (ft_check(str[i]) == 1)
+// int input_isseparator(char *str, int i)
+// {
+//     if (str[i] == '\0')
+//         return (TOKEN_END);
+//     if ((ft_check(str[i]) == 3) && (ft_check(str[i + 1]) == 3))
+//         return TOKEN_HEREDOC;
+//     else if ((ft_check(str[i]) == 2) && (ft_check(str[i + 1]) == 2))
+//         return (TOKEN_APPEND);
+// 	if (((str[i] > 8 && str[i] < 14) || str[i] == 32))
+//         return (TOKEN_SPACE);
+//     else if (ft_check(str[i]) == 5)
+//         return (TOKEN_PIPE);
+//     else if (ft_check(str[i]) == 3)
+//         return (TOKEN_INPUT);
+//     else if (ft_check(str[i]) == 2)
+//         return (TOKEN_OUTPUT);
+
+//     return 0;
+// }
+
 int input_isseparator(char *str, int i)
 {
-    if (str[i] == '\0')
-        return (TOKEN_END);
-    if ((ft_check(str[i]) == 3) && (ft_check(str[i + 1]) == 3))
-        return TOKEN_HEREDOC;
-    else if ((ft_check(str[i]) == 2) && (ft_check(str[i + 1]) == 2))
-        return (TOKEN_APPEND);
-    if (ft_check(str[i]) == 1)
-        return (TOKEN_SPACE);
-    else if (ft_check(str[i]) == 5)
-        return (TOKEN_PIPE);
-    else if (ft_check(str[i]) == 3)
-        return (TOKEN_INPUT);
-    else if (ft_check(str[i]) == 2)
-        return (TOKEN_OUTPUT);
-
-    return 0;
+	if (((str[i] > 8 && str[i] < 14) || str[i] == 32))
+		return (TOKEN_SPACE);
+	else if (str[i] == '|')
+		return (TOKEN_PIPE);
+	else if (str[i] == '<' && str[i + 1] == '<')
+		return (TOKEN_HEREDOC);
+	else if (str[i] == '>' && str[i + 1] == '>')
+		return (TOKEN_APPEND);
+	else if (str[i] == '<')
+		return (TOKEN_INPUT);
+	else if (str[i] == '>')
+		return (TOKEN_OUTPUT);
+	else if (str[i] == '\0')
+		return (TOKEN_END);
+	else
+		return (0);
 }
 void check_var(t_tokens **lst)
 {

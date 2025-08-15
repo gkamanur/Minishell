@@ -6,7 +6,7 @@
 /*   By: gkamanur <gkamanur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 13:17:25 by gkamanur          #+#    #+#             */
-/*   Updated: 2025/08/14 10:34:22 by gkamanur         ###   ########.fr       */
+/*   Updated: 2025/08/15 14:49:37 by gkamanur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	check_status(int status, char *str, int i)
 // 		return (TOKEN_OUTPUT);
 // 	return (0);
 // }
-int	if_word(t_tokens **token, char *str, int ind, int start)
+int if_word(t_tokens **token, char *str, int ind, int start)
 {
 	int		i;
 	char	*word;
@@ -59,29 +59,61 @@ int	if_word(t_tokens **token, char *str, int ind, int start)
 	add_token(token, new_token(word, ft_strdup(word), TOKEN_WORD, DEFAULT));
 	return (0);
 }
-int	if_separator(t_tokens **lst, char *str, int type, int ind)
+// int	if_separator(t_tokens **lst, char *str, int type, int ind)
+// {
+// 	int		i;
+// 	char	*sep;
+
+// 	i = 0;
+// 	if (type == TOKEN_APPEND || type == TOKEN_HEREDOC)
+// 	{
+// 		sep = malloc(sizeof(char) * 3);
+// 		if (!sep)
+// 			return (1);
+// 		while (i < 2)
+// 			sep[i++] = str[ind++];
+// 		sep[i] = '\0';
+// 		add_token(lst, new_token(sep, NULL, type, DEFAULT));
+// 	}
+// 	else
+// 	{
+// 		sep = malloc(sizeof(char) * 2);
+// 		if (!sep)
+// 			return (1);
+// 		while (i < 1)
+// 			sep[i++] = str[ind++];
+// 		sep[i] = '\0';
+// 		add_token(lst, new_token(sep, NULL, type, DEFAULT));
+// 	}
+// 	return (0);
+// }
+
+int if_separator(t_tokens **lst, char *str, int type, int ind)
 {
-	int		i;
-	char	*sep;
+    int len;
+	int str_len;
+	char *sep;
+	int i;
 
 	i = 0;
 	if (type == TOKEN_APPEND || type == TOKEN_HEREDOC)
-	{
-		sep = malloc(sizeof(char) * 3);
-		while (i < 2)
-			sep[i++] = str[ind++];
-		sep[i] = 0;
-		add_token(lst, new_token(sep, NULL, type, DEFAULT));
-	}
+		len = 2;
 	else
+		len = 1;
+    str_len = strlen(str);
+    if (ind + len > str_len)  // if we don't have enough characters
+        return 1; // or handle error
+    sep = malloc(len + 1);
+    if (!sep)
+        return 1;
+    while (i < len)
 	{
-		sep = malloc(sizeof(char) * 2);
-		while (i < 1)
-			sep[i++] = str[ind++];
-		sep[i] = 0;
-		add_token(lst, new_token(sep, NULL, type, DEFAULT));
+        sep[i] = str[ind + i];
+		i++;
 	}
-	return (0);
+    sep[len] = '\0';
+    add_token(lst, new_token(sep, NULL, type, DEFAULT));
+    return 0;
 }
 
 int	word_or_sep(int *i, char *str, int start, t_data *data)
@@ -107,7 +139,7 @@ int	word_or_sep(int *i, char *str, int start, t_data *data)
 
 int	make_tokens(t_data *data, char *str)
 {
-	int i = 0;
+	int i = -1;
 	int start;
 	int end;
 	int status;
@@ -115,7 +147,7 @@ int	make_tokens(t_data *data, char *str)
 	start = 0;
 	end = ft_strlen(str);
 	status = DEFAULT;
-	while (i <= end)
+	while (++i <= end)
 	{
 		status = check_status(status, str, i);
 		if (status == DEFAULT)

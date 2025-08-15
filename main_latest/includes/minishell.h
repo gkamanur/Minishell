@@ -6,7 +6,7 @@
 /*   By: gkamanur <gkamanur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 10:55:14 by gkamanur          #+#    #+#             */
-/*   Updated: 2025/08/14 16:45:40 by gkamanur         ###   ########.fr       */
+/*   Updated: 2025/08/15 14:46:27 by gkamanur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ typedef struct s_env
 
 enum e_token
 {
-    TOKEN_SPACE,
+    TOKEN_SPACE = 1,
     TOKEN_WORD,
     TOKEN_VAR, 
     TOKEN_PIPE, 
